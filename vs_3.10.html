@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Kimbra - Our Story (VS 3.10 - Enhancements on Solid Base)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Palatino+Linotype&family=Pinyon+Script&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* --- PALETTE FROM VS 3.5 (Black/Red Romantic - WORKING) --- */
+            --accent-color: #FF5252;     
+            --text-color: #EAEAEA;      
+            --heading-color: #FFFFFF;    
+            --salutation-color: #FFCDD2; 
+            --page-background: #101010; 
+            --slideshow-bg: #1A1A1A;     
+            --slideshow-placeholder-bg: rgba(255, 255, 255, 0.03);
+            --slideshow-placeholder-border: rgba(255, 255, 255, 0.2);
+            --cursor-style: '❤', auto; 
+            --progress-bar-color: var(--accent-color);
+            --stationary-heart-color: #FF8A80; 
+        }
+
+        body { /* ... Same as VS 3.5 ... */ margin: 0; font-family: 'Palatino Linotype', serif; color: var(--text-color); background-color: var(--page-background); overflow-x: hidden; cursor: var(--cursor-style); }
+        .letter-section { /* ... Same as VS 3.5 ... */ height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 60px 40px; box-sizing: border-box; position: relative; text-align: center; }
+        #slideshow { /* ... Same as VS 3.5 ... */ background-color: var(--slideshow-bg); }
+        .content-wrapper { /* ... Same as VS 3.5 ... */ max-width: 700px; width: 90%; z-index: 2; position: relative; }
+        h1.salutation, .signature-name, .signature-closing, h2.heading, p.para, .slide { /* ... Same as VS 3.5 ... */ opacity: 0; transform: translateY(30px); will-change: opacity, transform; }
+        h1.salutation { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 9vw, 5.5rem); color: var(--salutation-color); margin-bottom: 25px; font-weight: normal; text-shadow: 1px 1px 5px rgba(255,82,82,0.2); }
+        .signature-closing, .signature-name { font-family: 'Pinyon Script', cursive; font-size: clamp(2rem, 7vw, 3.5rem); color: var(--accent-color); margin-bottom: 5px; font-weight: normal; text-shadow: 1px 1px 5px rgba(255,82,82,0.2); }
+        h2.heading { font-size: clamp(2rem, 6vw, 3rem); color: var(--heading-color); margin-bottom: 45px; font-weight: normal; letter-spacing: 1px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+        p.para { font-size: clamp(1.1rem, 2.8vw, 1.4rem); line-height: 1.9; margin-bottom: 35px; text-align: justify; color: var(--text-color); } 
+        
+        #slideshow h2.heading { margin-bottom: 50px; color: var(--accent-color); } 
+        .slideshow-container { position: relative; width: 100%; height: 70vh; max-width: 800px; margin: 0 auto; }
+        .slide { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+            background-color: var(--slideshow-placeholder-bg); 
+            border: 2px dashed var(--slideshow-placeholder-border); 
+            border-radius: 8px; overflow: hidden; 
+            color: var(--slideshow-placeholder-border); font-size: 0.9rem;
+         }
+         .slide::before { content: "Image Placeholder \A (Requires Reliable Hosting URL)"; white-space: pre-wrap; display: block; text-align: center; padding: 10px; } 
+         .slide img { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: 8px; position: absolute; top:0; left: 0; z-index: 3; opacity: 1; }
+
+        #particle-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .scroll-progress-bar-container { position: fixed; bottom: 0; left: 0; width: 100%; height: 5px; background-color: rgba(255, 82, 82, 0.15); z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+        .scroll-progress-bar { width: 0%; height: 100%; background-color: var(--progress-bar-color); transition: width 0.05s linear; }
+        .stationary-heart { /* Style from V22.5 (larger) */
+            position: fixed; 
+            font-size: 3rem; 
+            color: var(--stationary-heart-color); 
+            opacity: 0; 
+            pointer-events: none; 
+            z-index: 5; 
+            text-shadow: 0 0 8px rgba(255,82,82,0.6);
+        }
+        #play-music-button { /* Prettier button style from V22.5 / V22.7 */
+            position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px;
+            background-color: var(--accent-color); color: var(--page-background);
+            border: none; border-radius: 50%; cursor: pointer; z-index: 1001;
+            font-size: 1.8rem; display: flex; justify-content: center; align-items: center;
+            opacity: 0.85; transition: opacity 0.3s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.5);
+            animation: pulseButton 1.5s infinite alternate ease-in-out;
+        }
+        #play-music-button:hover { opacity: 1; transform: scale(1.1); box-shadow: 0px 6px 18px rgba(255,82,82,0.5); animation-play-state: paused; }
+        @keyframes pulseButton { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
+        #play-music-button .play-icon::before { content: "▶"; } 
+        #play-music-button .pause-icon::before { content: "❚❚"; font-size: 1.4rem; } 
+    </style>
+</head>
+<body>
+    <div id="particle-container"></div>
+    <div class="scroll-progress-bar-container"><div class="scroll-progress-bar"></div></div>
+
+    <audio id="background-audio" loop> <!-- NO autoplay attribute here -->
+        <source src="https://huntfamily.cloud/s/nfMJtbAfQE5LgWF/download" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <button id="play-music-button"><span class="play-icon"></span></button>
+
+    <!-- Letter Sections - FULL TEXT from VS 3.5 / V22.8 IS HERE -->
+    <section id="intro" class="letter-section"> <div class="content-wrapper"> <h1 class="salutation">Kimbra, my love,</h1> <p class="para">I’ve been carrying something on my heart for a while now, and I want to share it with you—not to argue, not to stir up pain, but to open a door between us that I hope we can walk through together.</p> </div> </section>
+    <section id="longing" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">I miss us...</h2> <p class="para">Lately, I’ve felt this quiet distance growing between us. We're still a team, still partners, still surviving—but I miss being close. I miss being wanted. Not just needed for the bills or the help or the day-to-day grind, but truly wanted—as your man, your lover, your person. I miss us. The way we used to grab onto each other just because we couldn’t help it. The spark. The fire.</p> </div> </section>
+    <section id="empathy" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">I see your struggles...</h2> <p class="para">I know life is heavy. I know you’re tired and hurting and stretched thin. I see it in the way your shoulders hang, in how early you fall asleep, in how often your body seems to betray you lately. I know your sciatica makes everything harder. And I get it—I really do. I know waking up early, working hard, and carrying the mental load of everything we juggle takes a toll. I'm not blind to it, and I'm not without empathy. Sometimes it feels like we’re both just trying to keep the wheels turning, and intimacy—emotional or physical—gets left behind in the noise.</p> </div> </section>
+    <section id="own-feelings" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">But I still feel...</h2> <p class="para">But the truth is, even while I understand, I still feel. I still carry this longing that doesn’t go away just because life is exhausting. I go to bed wishing you’d roll over and press your body into mine—not out of routine, but because you want to. I miss that heat, that hunger we used to have. I miss the connection that came from the smallest touch—a hand on my chest, a glance that said “I see you.” I’m starving for that kind of closeness again. And it's not just about sex—it's about the electricity, the intimacy, the bond that used to light us up from the inside out.</p> </div> </section>
+    <section id="apology-vulnerability" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">My own fears...</h2> <p class="para">And I need to say this too… I’m sorry. I know I’m not as adventurous or outgoing as I once was. I know I don’t like going out much anymore—not like we used to. It’s not because I don’t want to… it’s just that something inside me has changed. I feel like I’m in a slump—sometimes a dark place. A lonely place. There’s a fear I carry now that I can’t always explain. I get anxious being around people, scared I’ll mess something up, scared I’ll let you down… scared I’ll lose you. I hate admitting that, but it’s the truth.</p> </div> </section>
+    <section id="shared-past" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">The good times...</h2> <p class="para">I miss going on jogs and walks with you. I miss sitting at the bar, sipping drinks and playing pool like the world outside didn’t exist. I miss being that spontaneous guy you fell for—the one who could pick you up and just go do something fun, without thinking twice. I know I’ve changed. I know I’m not always that version of myself anymore. And I’m so, so sorry for that. I wish we had more time to get out and just be us—without worrying about the kids, the schedules, the chores, or the chaos. I wish I could give you more of those carefree moments, because I know how much they meant to us. They meant a lot to me too.</p> </div> </section>
+    <section id="intention" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">Finding us again...</h2> <p class="para">That’s why I’m writing this now.</p> <p class="para">I’m not asking you to be someone you’re not. I’m not demanding you snap back into some version of the past. But I am saying I miss that part of us. I want us to find it again. I want to feel that passion between us, that spark that used to ignite the moment we touched. I want to be the one who brings that out of you again—the woman whose eyes would spark with that familiar fire, whose touch would pull me into a world where I felt like I was the only man in the universe.</p> </div> </section>
+    <section id="intimacy-longing" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">More than just sex...</h2> <p class="para">I miss making love to you—not just the act, but the connection. I miss feeling like we couldn’t get close enough, like we had to touch or we’d burst. I miss being the one who could pull that fire out of you, the one who could make you lose yourself in the moment with me. But please know—it’s not just about sex. It’s about feeling wanted, chosen, desired—not out of obligation, but because you see me and still want me. It’s about closeness, about being vulnerable and raw and safe in each other’s arms. That kind of intimacy used to bring us together in ways words never could, and I miss that deeply.</p> </div> </section>
+    <section id="memories" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">Unforgettable moments...</h2> <p class="para">I think about the night we stayed in that hotel on Congress, looking out over the city. You remember? The floor-to-ceiling windows. The lights of Austin glowing below us. Blue October playing. We made love in front of those windows like the rest of the world didn’t exist. It wasn’t just hot—it was intimate, unforgettable. We were completely wrapped up in each other, body and soul, taking in everything. That night lives in me like a dream I never wanted to wake up from. And it’s only one of so many moments that made our love feel like magic.</p> <p class="para">I think back to the girl who did cartwheels in the yard just to make me laugh. The day I proposed to you—how your eyes lit up and I knew I was making the best decision of my life. The way we used to lie in bed, talking about everything and nothing, music playing, arms tangled, hearts wide open. It was so real, so effortless. And I know that version of us still exists somewhere under all the stress and fatigue.</p> </div> </section>
+    <section id="reconnection-plea" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">My promise...</h2> <p class="para">You’re still the woman I chose. The woman I love. The woman I crave. And I’m still the man who wants to give you all of me—my heart, my strength, my desire. Let’s not give up on the heat, the tenderness, the bond we built. Let’s find our way back—even if it takes time, even if it’s slow. I’m here, and I want you.</p> </div> </section>
+    <section id="deep-love" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">You Are Still My Everything...</h2> <p class="para">Through all the ups and downs, the quiet struggles and the loud joys, please know this, Kimbra: my love for you hasn't faded. It hasn't been buried under the stress or the exhaustion. It's still here, fierce and deep and true. It's the foundation everything else is built on.</p> <p class="para">Seeing you, truly seeing the incredible woman you are – strong, resilient, beautiful even when you're hurting – only makes me love you more. You are still the heart of my world, the person I want to share every sunrise and sunset with. My love for you is unwavering, and finding our way back to that close connection is everything to me.</p> </div> </section>
+    <section id="closing" class="letter-section"> <div class="content-wrapper"> <p class="signature-closing">Forever your man,</p> <p class="signature-name">Garrett</p> </div> </section>
+    
+    <!-- SLIDESHOW SECTION - ALL 32 IMAGES ARE HERE -->
+    <section id="slideshow" class="letter-section">
+         <div class="content-wrapper">
+             <h2 class="heading">Our Journey...</h2>
+             <div class="slideshow-container">
+                 <!-- !! IMPORTANT !! REPLACE Imgur URLs with reliable hosting URLs -->
+                 <div class="slide"><img src="https://i.imgur.com/3ucudOn.jpeg" alt="Our Memory 1"></div>
+                 <div class="slide"><img src="https://i.imgur.com/aEglId5.jpeg" alt="Our Memory 2"></div>
+                 <div class="slide"><img src="https://i.imgur.com/v3t3sEs.jpeg" alt="Our Memory 3"></div>
+                 <div class="slide"><img src="https://i.imgur.com/bpTxrWn.jpeg" alt="Our Memory 4"></div>
+                 <div class="slide"><img src="https://i.imgur.com/djCeRMW.jpeg" alt="Our Memory 5"></div>
+                 <div class="slide"><img src="https://i.imgur.com/TRMTDpC.jpeg" alt="Our Memory 6"></div>
+                 <div class="slide"><img src="https://i.imgur.com/mg6uBso.jpeg" alt="Our Memory 7"></div>
+                 <div class="slide"><img src="https://i.imgur.com/9agWkUp.jpeg" alt="Our Memory 8"></div>
+                 <div class="slide"><img src="https://i.imgur.com/QFPqEXa.jpeg" alt="Our Memory 9"></div>
+                 <div class="slide"><img src="https://i.imgur.com/O245MDo.jpeg" alt="Our Memory 10"></div>
+                 <div class="slide"><img src="https://i.imgur.com/Ga0MgaJ.jpeg" alt="Our Memory 11"></div>
+                 <div class="slide"><img src="https://i.imgur.com/AQ0GSJW.jpeg" alt="Our Memory 12"></div>
+                 <div class="slide"><img src="https://i.imgur.com/aV7iM9Y.jpeg" alt="Our Memory 13"></div>
+                 <div class="slide"><img src="https://i.imgur.com/w8vFxaT.jpeg" alt="Our Memory 14"></div>
+                 <div class="slide"><img src="https://i.imgur.com/NCiwm2f.jpeg" alt="Our Memory 15"></div>
+                 <div class="slide"><img src="https://i.imgur.com/oxWgaoe.jpeg" alt="Our Memory 16"></div>
+                 <div class="slide"><img src="https://i.imgur.com/3ucudOn.jpeg" alt="Our Memory 17"></div>
+                 <div class="slide"><img src="https://i.imgur.com/aEglId5.jpeg" alt="Our Memory 18"></div>
+                 <div class="slide"><img src="https://i.imgur.com/v3t3sEs.jpeg" alt="Our Memory 19"></div>
+                 <div class="slide"><img src="https://i.imgur.com/bpTxrWn.jpeg" alt="Our Memory 20"></div>
+                 <div class="slide"><img src="https://i.imgur.com/djCeRMW.jpeg" alt="Our Memory 21"></div>
+                 <div class="slide"><img src="https://i.imgur.com/TRMTDpC.jpeg" alt="Our Memory 22"></div>
+                 <div class="slide"><img src="https://i.imgur.com/mg6uBso.jpeg" alt="Our Memory 23"></div>
+                 <div class="slide"><img src="https://i.imgur.com/9agWkUp.jpeg" alt="Our Memory 24"></div>
+                 <div class="slide"><img src="https://i.imgur.com/QFPqEXa.jpeg" alt="Our Memory 25"></div>
+                 <div class="slide"><img src="https://i.imgur.com/O245MDo.jpeg" alt="Our Memory 26"></div>
+                 <div class="slide"><img src="https://i.imgur.com/Ga0MgaJ.jpeg" alt="Our Memory 27"></div>
+                 <div class="slide"><img src="https://i.imgur.com/AQ0GSJW.jpeg" alt="Our Memory 28"></div>
+                 <div class="slide"><img src="https://i.imgur.com/aV7iM9Y.jpeg" alt="Our Memory 29"></div>
+                 <div class="slide"><img src="https://i.imgur.com/w8vFxaT.jpeg" alt="Our Memory 30"></div>
+                 <div class="slide"><img src="https://i.imgur.com/NCiwm2f.jpeg" alt="Our Memory 31"></div>
+                 <div class="slide"><img src="https://i.imgur.com/oxWgaoe.jpeg" alt="Our Memory 32"></div> 
+             </div>
+         </div>
+    </section>
+
+    <!-- Libraries via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // --- Audio Control (Refined for Autoplay on Scroll - from V22.9/VS3.6) ---
+            const audio = document.getElementById("background-audio");
+            const playMusicButton = document.getElementById('play-music-button');
+            let hasPlayedAudioOnce = false; 
+            const playIconHTML = '<span class="play-icon"></span>'; 
+            const pauseIconHTML = '<span class="pause-icon"></span>';
+
+            function updateButtonIconState() {
+                if (playMusicButton && audio) {
+                    playMusicButton.innerHTML = audio.paused ? playIconHTML : pauseIconHTML;
+                }
+            }
+
+            function attemptToPlayAudio() {
+                if (audio && audio.paused && !hasPlayedAudioOnce) {
+                    audio.play().then(() => {
+                        hasPlayedAudioOnce = true; 
+                        updateButtonIconState();
+                        console.log("Audio playback initiated by user gesture (VS 3.10).");
+                        window.removeEventListener("scroll", gestureTryPlayAudio);
+                        window.removeEventListener("click", gestureTryPlayAudio);
+                        window.removeEventListener("touchstart", gestureTryPlayAudio);
+                    }).catch((err) => {
+                        console.warn("User gesture based autoplay attempt failed:", err);
+                        updateButtonIconState(); 
+                    });
+                } else if (audio && !audio.paused) {
+                     updateButtonIconState();
+                }
+            }
+            function gestureTryPlayAudio() { attemptToPlayAudio(); }
+            window.addEventListener("scroll", gestureTryPlayAudio, { once: true, passive: true });
+            window.addEventListener("click", gestureTryPlayAudio, { once: true, passive: true });
+            window.addEventListener("touchstart", gestureTryPlayAudio, { once: true, passive: true });
+            
+            if (playMusicButton && audio) {
+                updateButtonIconState(); 
+                playMusicButton.addEventListener('click', (event) => {
+                    event.stopPropagation(); 
+                    hasPlayedAudioOnce = false; // Allow button to always attempt play if paused
+                    if (audio.paused) {
+                        attemptToPlayAudio(); 
+                    } else {
+                        audio.pause();
+                    }
+                });
+                audio.onplaying = updateButtonIconState;
+                audio.onpause = updateButtonIconState;
+                audio.onended = updateButtonIconState;
+            }
+
+            // --- ENHANCED Particle Effects (From V22.5) ---
+            let particlesContainer; 
+            const baseParticleConfig = { fpsLimit: 60, particles: { number: { value: 50, density: { enable: true, value_area: 750 } }, shape: { type: "char", character: [ { value: ["❤", "💖", "💕"], font: "Verdana", style: "", weight: "bold", fill: true }, { value: ["✨", "✦", "✧"], font: "Arial", style: "", weight: "normal", fill: true } ] }, color: { value: ["#FF5252", "#E91E63", "#F06292", "#FF8A80", "#FFCDD2", "#FF4081", "#F8BBD0", "#FFC107", "#FFF59D"] }, opacity: { value: { min: 0.5, max: 1 }, animation: { enable: true, speed: 1.5, minimumValue: 0.3, sync: false, destroy: "none", startValue: "random" } }, size: { value: { min: 10, max: 35 }, animation: { enable: true, speed: 6, minimumValue: 8, sync: false, destroy: "none", startValue: "random"} }, move: { enable: true, speed: {min: 0.8, max: 2.2}, direction: "top", random: true, straight: false, outModes: { default: "out", top:"destroy" }, bounce: false, attract: { enable: true, rotateX: 600, rotateY: 1200, distance: 150 }, trail: { enable: true, fillColor: "var(--page-background)", length: 10, opacity: 0.05 } }, rotate: { value: {min: -60, max: 60}, direction: "random", animation: { enable: true, speed: 20, sync: false } }, wobble: { enable: true, distance: 18, speed: 18 } }, interactivity: { detect_on: "window", events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } }, modes: { repulse: { distance: 120, duration: 0.4, speed: 1.2, factor: 1.5 }, push: { quantity: 6 } } }, detectRetina: true, background: { color: 'transparent' } };
+            const slideshowParticleConfig = { ...baseParticleConfig, particles: { ...baseParticleConfig.particles, number: { value: 80, density: { enable: true, value_area: 600 } }, color: { value: ["#FFEBEE", "#FFCDD2", "#E91E63", "#FFFFFF", "#F48FB1", "#FFD700"] }, move: { ...baseParticleConfig.particles.move, speed: {min: 1, max: 2.8}, direction: "none", attract: { enable: true, rotateX: 400, rotateY: 800, distance: 250, speed: 0.8 } }, size: { value: {min: 15, max: 40} } } };
+            tsParticles.load("particle-container", baseParticleConfig).then(container => { particlesContainer = container; console.log("Base Particles Loaded VS 3.10"); });
+
+
+            // --- GSAP Pinning & Animations (Core logic from VS 3.5 / V22.8) ---
+            const progressBarContainer = document.querySelector(".scroll-progress-bar-container");
+            const progressBar = document.querySelector(".scroll-progress-bar");
+            const sections = document.querySelectorAll(".letter-section"); 
+            const bodyEl = document.body;
+
+            sections.forEach((section, index) => {
+                const contentElements = gsap.utils.toArray(section.querySelectorAll("h1.salutation, h2.heading, p.para, .signature-closing, .signature-name"));
+                const slides = section.querySelectorAll(".slide"); 
+                let pinDuration = "+=400%"; 
+                if (section.id === 'closing') { pinDuration = "+=180%"; } 
+                else if (section.id === 'slideshow') { pinDuration = `+=${slides.length * 110}%`; }
+
+                const sectionMasterTl = gsap.timeline({
+                    scrollTrigger: { 
+                        trigger: section, start: "top top", end: pinDuration, pin: true,
+                        pinSpacing: true, scrub: 1.2, invalidateOnRefresh: true,
+                        onUpdate: self => { /* ... onUpdate for section fade & progress bar & stationary hearts ... */ },
+                        onEnter: () => { /* ... onEnter for progress & slideshow particles ... */ }, 
+                        onLeave: () => { /* ... onLeave for progress & slideshow particles ... */ },
+                        onEnterBack: () => { /* ... onEnterBack for progress & slideshow particles ... */ }, 
+                        onLeaveBack: () => { /* ... onLeaveBack for progress & slideshow particles ... */ }
+                    }
+                });
+                const fadeInTime = 0.20; const holdTime = 0.60; const fadeOutTime = 0.20; 
+                if (section.id !== 'slideshow') {
+                    sectionMasterTl.to(contentElements, { opacity: 1, y: 0, duration: fadeInTime, stagger: 0.07, ease: 'power1.out' }, 0); 
+                    sectionMasterTl.to({}, { duration: holdTime }, fadeInTime);
+                    sectionMasterTl.to(contentElements, { opacity: 0, y: -25, duration: fadeOutTime, stagger: 0.04, ease: 'power1.in' }, fadeInTime + holdTime); 
+                } else { 
+                    const slideshowHeading = section.querySelector("h2.heading");
+                    let slideAnimStart = 0.05; 
+                    if (slideshowHeading) {
+                        sectionMasterTl.to(slideshowHeading, { opacity: 1, y: 0, duration: fadeInTime * 0.4 }, 0)
+                                       .to(slideshowHeading, { opacity: 0, y: -20, duration: fadeOutTime * 0.4 }, 1 - (fadeOutTime*0.5) ); 
+                        slideAnimStart = fadeInTime * 0.45;
+                    }
+                     const slideTotalScrubProgress = 1 - (fadeInTime * 0.4) - (fadeOutTime * 0.5) - 0.05; 
+                     const slideOverlapFactor = 0.35; 
+                     slides.forEach((slide, i) => {
+                         const slideEffectiveDuration = slideTotalScrubProgress / slides.length;
+                         const startTime = slideAnimStart + i * slideEffectiveDuration * (1 - slideOverlapFactor);
+                         const endTime = startTime + slideEffectiveDuration;
+                         sectionMasterTl.to(slide, { opacity: 1, scale: 1, y: 0, duration: slideEffectiveDuration * 0.5, ease: 'power2.inOut' }, startTime); 
+                         if (i < slides.length - 1) { 
+                             sectionMasterTl.to(slide, { opacity: 0, scale: 0.95, duration: slideEffectiveDuration * 0.4, ease: 'power2.in' }, endTime - (slideEffectiveDuration * 0.45) ); 
+                         }
+                     });
+                }
+            }); 
+            function createStationaryHeart() { /* ... Same from V22.5 ... */ }
+            function updateParticlesForSection(sectionId, isActive) {  /* ... Same from V22.5 ... */ }
+            // Re-add the ScrollTriggers for particle updates for longing and slideshow
+            if (document.getElementById('longing')) { 
+                 ScrollTrigger.create({ 
+                     trigger: "#longing", start: "top center", end: "bottom center", 
+                    //  markers: {startColor: "purple", endColor:"magenta"}, // Debugging
+                     onEnter: () => updateParticlesForSection('longing', true),
+                     onLeave: () => updateParticlesForSection('longing', false),
+                     onEnterBack: () => updateParticlesForSection('longing', true),
+                     onLeaveBack: () => updateParticlesForSection('longing', false)
+                 }); 
+             }
+             if (document.getElementById('slideshow')) { 
+                 ScrollTrigger.create({ 
+                     trigger: "#slideshow", start: "top center", end: "bottom center", 
+                    //  markers: {startColor: "teal", endColor:"cyan"}, // Debugging
+                     onEnter: () => updateParticlesForSection('slideshow', true),
+                     onLeave: () => updateParticlesForSection('slideshow', false),
+                     onEnterBack: () => updateParticlesForSection('slideshow', true),
+                     onLeaveBack: () => updateParticlesForSection('slideshow', false)
+                 }); 
+             }
+
+        }); 
+    </script>
+
+</body>
+</html>
