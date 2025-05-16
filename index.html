@@ -289,7 +289,7 @@
             }); 
             function createStationaryHeart() { /* ... Same from V22.5 ... */ }
 
-            // Fade out images as user scrolls past each image section
+            // Fade out images as user scrolls past each image section (fade slower)
             document.querySelectorAll('.letter-section img').forEach(img => {
                 gsap.fromTo(img,
                     { opacity: 1 },
@@ -297,8 +297,8 @@
                         opacity: 0,
                         scrollTrigger: {
                             trigger: img,
-                            start: "top center",
-                            end: "bottom top",
+                            start: "top 80%",    // Start fading when image top is near bottom of viewport
+                            end: "bottom top+=100", // End fading well after image has left viewport
                             scrub: true
                         }
                     }
