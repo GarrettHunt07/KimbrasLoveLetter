@@ -27,27 +27,13 @@
 
         body { /* ... Same as VS 3.5 ... */ margin: 0; font-family: 'Palatino Linotype', serif; color: var(--text-color); background-color: var(--page-background); overflow-x: hidden; cursor: var(--cursor-style); }
         .letter-section { /* ... Same as VS 3.5 ... */ height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 60px 40px; box-sizing: border-box; position: relative; text-align: center; }
-        #slideshow { /* ... Same as VS 3.5 ... */ background-color: var(--slideshow-bg); }
         .content-wrapper { /* ... Same as VS 3.5 ... */ max-width: 700px; width: 90%; z-index: 2; position: relative; }
-        h1.salutation, .signature-name, .signature-closing, h2.heading, p.para, .slide { /* ... Same as VS 3.5 ... */ opacity: 0; transform: translateY(30px); will-change: opacity, transform; }
+        h1.salutation, .signature-name, .signature-closing, h2.heading, p.para { /* ... Same as VS 3.5 ... */ opacity: 0; transform: translateY(30px); will-change: opacity, transform; }
         h1.salutation { font-family: 'Pinyon Script', cursive; font-size: clamp(2.8rem, 9vw, 5.5rem); color: var(--salutation-color); margin-bottom: 25px; font-weight: normal; text-shadow: 1px 1px 5px rgba(255,82,82,0.2); }
         .signature-closing, .signature-name { font-family: 'Pinyon Script', cursive; font-size: clamp(2rem, 7vw, 3.5rem); color: var(--accent-color); margin-bottom: 5px; font-weight: normal; text-shadow: 1px 1px 5px rgba(255,82,82,0.2); }
         h2.heading { font-size: clamp(2rem, 6vw, 3rem); color: var(--heading-color); margin-bottom: 45px; font-weight: normal; letter-spacing: 1px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
         p.para { font-size: clamp(1.1rem, 2.8vw, 1.4rem); line-height: 1.9; margin-bottom: 35px; text-align: justify; color: var(--text-color); } 
         
-        #slideshow h2.heading { margin-bottom: 50px; color: var(--accent-color); } 
-        .slideshow-container { position: relative; width: 100%; height: 70vh; max-width: 800px; margin: 0 auto; }
-        .slide { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center; 
-            background-color: var(--slideshow-placeholder-bg); 
-            border: 2px dashed var(--slideshow-placeholder-border); 
-            border-radius: 8px; overflow: hidden; 
-            color: var(--slideshow-placeholder-border); font-size: 0.9rem;
-         }
-         .slide::before { content: "Image Placeholder \A (Requires Reliable Hosting URL)"; white-space: pre-wrap; display: block; text-align: center; padding: 10px; } 
-         .slide img { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: 8px; position: absolute; top:0; left: 0; z-index: 3; opacity: 1; }
-
         #particle-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         .scroll-progress-bar-container { position: fixed; bottom: 0; left: 0; width: 100%; height: 5px; background-color: rgba(255, 82, 82, 0.15); z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
         .scroll-progress-bar { width: 0%; height: 100%; background-color: var(--progress-bar-color); transition: width 0.05s linear; }
@@ -91,54 +77,121 @@
     <section id="empathy" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">I see your struggles...</h2> <p class="para">I know life is heavy. I know you’re tired and hurting and stretched thin. I see it in the way your shoulders hang, in how early you fall asleep, in how often your body seems to betray you lately. I know your sciatica makes everything harder. And I get it—I really do. I know waking up early, working hard, and carrying the mental load of everything we juggle takes a toll. I'm not blind to it, and I'm not without empathy. Sometimes it feels like we’re both just trying to keep the wheels turning, and intimacy—emotional or physical—gets left behind in the noise.</p> </div> </section>
     <section id="own-feelings" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">But I still feel...</h2> <p class="para">But the truth is, even while I understand, I still feel. I still carry this longing that doesn’t go away just because life is exhausting. I go to bed wishing you’d roll over and press your body into mine—not out of routine, but because you want to. I miss that heat, that hunger we used to have. I miss the connection that came from the smallest touch—a hand on my chest, a glance that said “I see you.” I’m starving for that kind of closeness again. And it's not just about sex—it's about the electricity, the intimacy, the bond that used to light us up from the inside out.</p> </div> </section>
     <section id="apology-vulnerability" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">My own fears...</h2> <p class="para">And I need to say this too… I’m sorry. I know I’m not as adventurous or outgoing as I once was. I know I don’t like going out much anymore—not like we used to. It’s not because I don’t want to… it’s just that something inside me has changed. I feel like I’m in a slump—sometimes a dark place. A lonely place. There’s a fear I carry now that I can’t always explain. I get anxious being around people, scared I’ll mess something up, scared I’ll let you down… scared I’ll lose you. I hate admitting that, but it’s the truth.</p> </div> </section>
+    <section id="rebuild-friendship" class="letter-section"><div class="content-wrapper"><h2 class="heading">Our Friendship, Our Future...</h2><p class="para">I know we’ve been arguing more, and I’ve said things I didn’t mean—things that came from sadness, frustration, and feeling alone. But the truth is, I don’t want to break up. I want to marry you. I want to marry my best friend. The one I used to laugh with, plan with, and feel understood by without saying a word.</p><p class="para">I miss that bond—the friendship under all the passion. Lately, it feels like we’re just trying to survive the day, hoping for one moment without stress or bitterness. I don’t want war. I want peace—with you. I want us to rebuild what we had and create something even better. I believe in us. I love you more than I’ve been able to say.</p></div></section>
+    <section id="reassurance" class="letter-section"><div class="content-wrapper"><h2 class="heading">You are my everything...</h2><p class="para">I want you to know that I’m not going anywhere. I’m not giving up on us. I’m here, and I always will be. Through every high and low, every fight and silence, I’ll still be standing beside you, loving you. You are my heart, my home, and my forever. No matter how hard things get, I won’t walk away from the life we’ve built. I just want us to find each other again — stronger, wiser, and even more in love than before.</p></div></section>
     <section id="shared-past" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">The good times...</h2> <p class="para">I miss going on jogs and walks with you. I miss sitting at the bar, sipping drinks and playing pool like the world outside didn’t exist. I miss being that spontaneous guy you fell for—the one who could pick you up and just go do something fun, without thinking twice. I know I’ve changed. I know I’m not always that version of myself anymore. And I’m so, so sorry for that. I wish we had more time to get out and just be us—without worrying about the kids, the schedules, the chores, or the chaos. I wish I could give you more of those carefree moments, because I know how much they meant to us. They meant a lot to me too.</p> </div> </section>
+    <section id="hard-times" class="letter-section"><div class="content-wrapper"><h2 class="heading">And the bad times...</h2><p class="para">We've been through some dark chapters too. Moments we don’t post online. Nights filled with silence instead of laughter. Fights where we both said things we didn’t mean, where we wounded each other with our words. There were times I could feel the distance growing between us, and it scared the hell out of me. Not because we argued — but because I started to feel like we were forgetting how to reach for each other through it.</p><p class="para">But even in the hard moments, I never stopped loving you. Not once. Even when I felt hurt or misunderstood, even when I was quiet and withdrawn — the love was still there, burning underneath all the pain. That’s how I know this is real. Because we didn’t give up when things got hard. We’re still here. We’re still fighting for us.</p></div></section>
     <section id="intention" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">Finding us again...</h2> <p class="para">That’s why I’m writing this now.</p> <p class="para">I’m not asking you to be someone you’re not. I’m not demanding you snap back into some version of the past. But I am saying I miss that part of us. I want us to find it again. I want to feel that passion between us, that spark that used to ignite the moment we touched. I want to be the one who brings that out of you again—the woman whose eyes would spark with that familiar fire, whose touch would pull me into a world where I felt like I was the only man in the universe.</p> </div> </section>
+    <section id="vulnerability" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">Opening up...</h2> <p class="para">I know it’s not easy to open up, especially when life feels heavy. But I want you to know that I’m here, ready to listen. I want to understand what you’re feeling, what you need, and how we can work together to find our way back to each other. I want us to be able to talk about the hard stuff without fear of judgment or anger. I want us to be able to share our hearts again, even when it’s scary.</p> </div> </section>
     <section id="intimacy-longing" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">More than just sex...</h2> <p class="para">I miss making love to you—not just the act, but the connection. I miss feeling like we couldn’t get close enough, like we had to touch or we’d burst. I miss being the one who could pull that fire out of you, the one who could make you lose yourself in the moment with me. But please know—it’s not just about sex. It’s about feeling wanted, chosen, desired—not out of obligation, but because you see me and still want me. It’s about closeness, about being vulnerable and raw and safe in each other’s arms. That kind of intimacy used to bring us together in ways words never could, and I miss that deeply.</p> </div> </section>
     <section id="memories" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">Unforgettable moments...</h2> <p class="para">I think about the night we stayed in that hotel on Congress, looking out over the city. You remember? The floor-to-ceiling windows. The lights of Austin glowing below us. Blue October playing. We made love in front of those windows like the rest of the world didn’t exist. It wasn’t just hot—it was intimate, unforgettable. We were completely wrapped up in each other, body and soul, taking in everything. That night lives in me like a dream I never wanted to wake up from. And it’s only one of so many moments that made our love feel like magic.</p> <p class="para">I think back to the girl who did cartwheels in the yard just to make me laugh. The day I proposed to you—how your eyes lit up and I knew I was making the best decision of my life. The way we used to lie in bed, talking about everything and nothing, music playing, arms tangled, hearts wide open. It was so real, so effortless. And I know that version of us still exists somewhere under all the stress and fatigue.</p> </div> </section>
-    <section id="reconnection-plea" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">My promise...</h2> <p class="para">You’re still the woman I chose. The woman I love. The woman I crave. And I’m still the man who wants to give you all of me—my heart, my strength, my desire. Let’s not give up on the heat, the tenderness, the bond we built. Let’s find our way back—even if it takes time, even if it’s slow. I’m here, and I want you.</p> </div> </section>
+    <section id="reconnection-plea" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">My promise...</h2> <p class="para">You’re still the woman I chose. The woman I love. The woman I crave. And I’m still the man who wants to give you all of me—my heart, my strength, my desire. Let’s not give up on the heat, the tenderness, the bond we built. Let’s find our way back—even if it takes time. I’m here, and I want you.</p> </div> </section>
     <section id="deep-love" class="letter-section"> <div class="content-wrapper"> <h2 class="heading">You Are Still My Everything...</h2> <p class="para">Through all the ups and downs, the quiet struggles and the loud joys, please know this, Kimbra: my love for you hasn't faded. It hasn't been buried under the stress or the exhaustion. It's still here, fierce and deep and true. It's the foundation everything else is built on.</p> <p class="para">Seeing you, truly seeing the incredible woman you are – strong, resilient, beautiful even when you're hurting – only makes me love you more. You are still the heart of my world, the person I want to share every sunrise and sunset with. My love for you is unwavering, and finding our way back to that close connection is everything to me.</p> </div> </section>
-    <section id="closing" class="letter-section"> <div class="content-wrapper"> <p class="signature-closing">Forever your man,</p> <p class="signature-name">Garrett</p> </div> </section>
-    
-    <!-- SLIDESHOW SECTION - ALL 32 IMAGES ARE HERE -->
-    <section id="slideshow" class="letter-section">
-         <div class="content-wrapper">
-             <h2 class="heading">Our Journey...</h2>
-             <div class="slideshow-container">
-                 <!-- !! IMPORTANT !! REPLACE Imgur URLs with reliable hosting URLs -->
-                 <div class="slide"><img src="https://i.imgur.com/3ucudOn.jpeg" alt="Our Memory 1"></div>
-                 <div class="slide"><img src="https://i.imgur.com/aEglId5.jpeg" alt="Our Memory 2"></div>
-                 <div class="slide"><img src="https://i.imgur.com/v3t3sEs.jpeg" alt="Our Memory 3"></div>
-                 <div class="slide"><img src="https://i.imgur.com/bpTxrWn.jpeg" alt="Our Memory 4"></div>
-                 <div class="slide"><img src="https://i.imgur.com/djCeRMW.jpeg" alt="Our Memory 5"></div>
-                 <div class="slide"><img src="https://i.imgur.com/TRMTDpC.jpeg" alt="Our Memory 6"></div>
-                 <div class="slide"><img src="https://i.imgur.com/mg6uBso.jpeg" alt="Our Memory 7"></div>
-                 <div class="slide"><img src="https://i.imgur.com/9agWkUp.jpeg" alt="Our Memory 8"></div>
-                 <div class="slide"><img src="https://i.imgur.com/QFPqEXa.jpeg" alt="Our Memory 9"></div>
-                 <div class="slide"><img src="https://i.imgur.com/O245MDo.jpeg" alt="Our Memory 10"></div>
-                 <div class="slide"><img src="https://i.imgur.com/Ga0MgaJ.jpeg" alt="Our Memory 11"></div>
-                 <div class="slide"><img src="https://i.imgur.com/AQ0GSJW.jpeg" alt="Our Memory 12"></div>
-                 <div class="slide"><img src="https://i.imgur.com/aV7iM9Y.jpeg" alt="Our Memory 13"></div>
-                 <div class="slide"><img src="https://i.imgur.com/w8vFxaT.jpeg" alt="Our Memory 14"></div>
-                 <div class="slide"><img src="https://i.imgur.com/NCiwm2f.jpeg" alt="Our Memory 15"></div>
-                 <div class="slide"><img src="https://i.imgur.com/oxWgaoe.jpeg" alt="Our Memory 16"></div>
-                 <div class="slide"><img src="https://i.imgur.com/3ucudOn.jpeg" alt="Our Memory 17"></div>
-                 <div class="slide"><img src="https://i.imgur.com/aEglId5.jpeg" alt="Our Memory 18"></div>
-                 <div class="slide"><img src="https://i.imgur.com/v3t3sEs.jpeg" alt="Our Memory 19"></div>
-                 <div class="slide"><img src="https://i.imgur.com/bpTxrWn.jpeg" alt="Our Memory 20"></div>
-                 <div class="slide"><img src="https://i.imgur.com/djCeRMW.jpeg" alt="Our Memory 21"></div>
-                 <div class="slide"><img src="https://i.imgur.com/TRMTDpC.jpeg" alt="Our Memory 22"></div>
-                 <div class="slide"><img src="https://i.imgur.com/mg6uBso.jpeg" alt="Our Memory 23"></div>
-                 <div class="slide"><img src="https://i.imgur.com/9agWkUp.jpeg" alt="Our Memory 24"></div>
-                 <div class="slide"><img src="https://i.imgur.com/QFPqEXa.jpeg" alt="Our Memory 25"></div>
-                 <div class="slide"><img src="https://i.imgur.com/O245MDo.jpeg" alt="Our Memory 26"></div>
-                 <div class="slide"><img src="https://i.imgur.com/Ga0MgaJ.jpeg" alt="Our Memory 27"></div>
-                 <div class="slide"><img src="https://i.imgur.com/AQ0GSJW.jpeg" alt="Our Memory 28"></div>
-                 <div class="slide"><img src="https://i.imgur.com/aV7iM9Y.jpeg" alt="Our Memory 29"></div>
-                 <div class="slide"><img src="https://i.imgur.com/w8vFxaT.jpeg" alt="Our Memory 30"></div>
-                 <div class="slide"><img src="https://i.imgur.com/NCiwm2f.jpeg" alt="Our Memory 31"></div>
-                 <div class="slide"><img src="https://i.imgur.com/oxWgaoe.jpeg" alt="Our Memory 32"></div> 
-             </div>
-         </div>
+   
+    <section id="closing" class="letter-section">
+        <div class="content-wrapper">
+            <h2 class="heading" style="display:none;">Closing</h2>
+            <p class="signature-closing">Forever your man,</p>
+            <p class="signature-name">Garrett</p>
+        </div>
+        <div class="stationary-heart" id="stationary-heart-1">❤</div>
+    </section>
+
+    <section id="xoxo" class="letter-section">
+        <div class="content-wrapper">
+            <span id="xoxo-text" style="
+                display: inline-block;
+                font-family: 'Pinyon Script', cursive;
+                color: var(--accent-color);
+                font-size: clamp(4rem, 12vw, 8rem);
+                letter-spacing: 0.2em;
+                text-shadow: 0 2px 16px rgba(255,82,82,0.25);
+                margin-bottom: 0.5em;
+            ">XOXO</span>
+            <div id="xoxo-hearts-burst" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10;"></div>
+        </div>
+    </section>
+
+    <!-- IMAGE SECTIONS: Each image is now its own section below the closing -->
+    <section id="memory-1" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/3ucudOn.jpg" alt="Our Memory 1" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
+    </section>
+    <section id="memory-2" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/aEglId5.jpg" alt="Our Memory 2" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
+    </section>
+    <section id="memory-3" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/v3t3sEs.jpg" alt="Our Memory 3" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
+    </section>
+    <section id="memory-4" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/bpTxrWn.jpg" alt="Our Memory 4" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
+    </section>
+    <section id="memory-5" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/djCeRMW.jpg" alt="Our Memory 5" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
+    </section>
+    <section id="memory-6" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/TRMTDpC.jpg" alt="Our Memory 6" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
+    </section>
+    <section id="memory-7" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/mg6uBso.jpg" alt="Our Memory 7" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
+    </section>
+    <section id="memory-8" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/9agWkUp.jpg" alt="Our Memory 8" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
+    </section>
+    <section id="memory-9" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/QFPqEXa.jpg" alt="Our Memory 9" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
+    </section>
+    <section id="memory-10" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/O245MDo.jpg" alt="Our Memory 10" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
+    </section>
+    <section id="memory-11" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/Ga0MgaJ.jpg" alt="Our Memory 11" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
+    </section>
+    <section id="memory-12" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/AQ0GSJW.jpg" alt="Our Memory 12" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
+    </section>
+    <section id="memory-13" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/aV7iM9Y.jpg" alt="Our Memory 13" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
+    </section>
+    <section id="memory-14" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/w8vFxaT.jpg" alt="Our Memory 14" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
+    </section>
+    <section id="memory-15" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/NCiwm2f.jpg" alt="Our Memory 15" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
+    </section>
+    <section id="memory-16" class="letter-section">
+        <div class="content-wrapper">
+            <img src="https://i.imgur.com/oxWgaoe.jpg" alt="Our Memory 16" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+        </div>
     </section>
 
     <!-- Libraries via CDN -->
@@ -204,7 +257,6 @@
             // --- ENHANCED Particle Effects (From V22.5) ---
             let particlesContainer; 
             const baseParticleConfig = { fpsLimit: 60, particles: { number: { value: 50, density: { enable: true, value_area: 750 } }, shape: { type: "char", character: [ { value: ["❤", "💖", "💕"], font: "Verdana", style: "", weight: "bold", fill: true }, { value: ["✨", "✦", "✧"], font: "Arial", style: "", weight: "normal", fill: true } ] }, color: { value: ["#FF5252", "#E91E63", "#F06292", "#FF8A80", "#FFCDD2", "#FF4081", "#F8BBD0", "#FFC107", "#FFF59D"] }, opacity: { value: { min: 0.5, max: 1 }, animation: { enable: true, speed: 1.5, minimumValue: 0.3, sync: false, destroy: "none", startValue: "random" } }, size: { value: { min: 10, max: 35 }, animation: { enable: true, speed: 6, minimumValue: 8, sync: false, destroy: "none", startValue: "random"} }, move: { enable: true, speed: {min: 0.8, max: 2.2}, direction: "top", random: true, straight: false, outModes: { default: "out", top:"destroy" }, bounce: false, attract: { enable: true, rotateX: 600, rotateY: 1200, distance: 150 }, trail: { enable: true, fillColor: "var(--page-background)", length: 10, opacity: 0.05 } }, rotate: { value: {min: -60, max: 60}, direction: "random", animation: { enable: true, speed: 20, sync: false } }, wobble: { enable: true, distance: 18, speed: 18 } }, interactivity: { detect_on: "window", events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } }, modes: { repulse: { distance: 120, duration: 0.4, speed: 1.2, factor: 1.5 }, push: { quantity: 6 } } }, detectRetina: true, background: { color: 'transparent' } };
-            const slideshowParticleConfig = { ...baseParticleConfig, particles: { ...baseParticleConfig.particles, number: { value: 80, density: { enable: true, value_area: 600 } }, color: { value: ["#FFEBEE", "#FFCDD2", "#E91E63", "#FFFFFF", "#F48FB1", "#FFD700"] }, move: { ...baseParticleConfig.particles.move, speed: {min: 1, max: 2.8}, direction: "none", attract: { enable: true, rotateX: 400, rotateY: 800, distance: 250, speed: 0.8 } }, size: { value: {min: 15, max: 40} } } };
             tsParticles.load("particle-container", baseParticleConfig).then(container => { particlesContainer = container; console.log("Base Particles Loaded VS 3.10"); });
 
 
@@ -216,72 +268,108 @@
 
             sections.forEach((section, index) => {
                 const contentElements = gsap.utils.toArray(section.querySelectorAll("h1.salutation, h2.heading, p.para, .signature-closing, .signature-name"));
-                const slides = section.querySelectorAll(".slide"); 
                 let pinDuration = "+=400%"; 
                 if (section.id === 'closing') { pinDuration = "+=180%"; } 
-                else if (section.id === 'slideshow') { pinDuration = `+=${slides.length * 110}%`; }
 
                 const sectionMasterTl = gsap.timeline({
                     scrollTrigger: { 
                         trigger: section, start: "top top", end: pinDuration, pin: true,
                         pinSpacing: true, scrub: 1.2, invalidateOnRefresh: true,
                         onUpdate: self => { /* ... onUpdate for section fade & progress bar & stationary hearts ... */ },
-                        onEnter: () => { /* ... onEnter for progress & slideshow particles ... */ }, 
-                        onLeave: () => { /* ... onLeave for progress & slideshow particles ... */ },
-                        onEnterBack: () => { /* ... onEnterBack for progress & slideshow particles ... */ }, 
-                        onLeaveBack: () => { /* ... onLeaveBack for progress & slideshow particles ... */ }
+                        onEnter: () => { /* ... onEnter for progress ... */ }, 
+                        onLeave: () => { /* ... onLeave for progress ... */ },
+                        onEnterBack: () => { /* ... onEnterBack for progress ... */ }, 
+                        onLeaveBack: () => { /* ... onLeaveBack for progress ... */ }
                     }
                 });
                 const fadeInTime = 0.20; const holdTime = 0.60; const fadeOutTime = 0.20; 
-                if (section.id !== 'slideshow') {
-                    sectionMasterTl.to(contentElements, { opacity: 1, y: 0, duration: fadeInTime, stagger: 0.07, ease: 'power1.out' }, 0); 
-                    sectionMasterTl.to({}, { duration: holdTime }, fadeInTime);
-                    sectionMasterTl.to(contentElements, { opacity: 0, y: -25, duration: fadeOutTime, stagger: 0.04, ease: 'power1.in' }, fadeInTime + holdTime); 
-                } else { 
-                    const slideshowHeading = section.querySelector("h2.heading");
-                    let slideAnimStart = 0.05; 
-                    if (slideshowHeading) {
-                        sectionMasterTl.to(slideshowHeading, { opacity: 1, y: 0, duration: fadeInTime * 0.4 }, 0)
-                                       .to(slideshowHeading, { opacity: 0, y: -20, duration: fadeOutTime * 0.4 }, 1 - (fadeOutTime*0.5) ); 
-                        slideAnimStart = fadeInTime * 0.45;
-                    }
-                     const slideTotalScrubProgress = 1 - (fadeInTime * 0.4) - (fadeOutTime * 0.5) - 0.05; 
-                     const slideOverlapFactor = 0.35; 
-                     slides.forEach((slide, i) => {
-                         const slideEffectiveDuration = slideTotalScrubProgress / slides.length;
-                         const startTime = slideAnimStart + i * slideEffectiveDuration * (1 - slideOverlapFactor);
-                         const endTime = startTime + slideEffectiveDuration;
-                         sectionMasterTl.to(slide, { opacity: 1, scale: 1, y: 0, duration: slideEffectiveDuration * 0.5, ease: 'power2.inOut' }, startTime); 
-                         if (i < slides.length - 1) { 
-                             sectionMasterTl.to(slide, { opacity: 0, scale: 0.95, duration: slideEffectiveDuration * 0.4, ease: 'power2.in' }, endTime - (slideEffectiveDuration * 0.45) ); 
-                         }
-                     });
-                }
+                sectionMasterTl.to(contentElements, { opacity: 1, y: 0, duration: fadeInTime, stagger: 0.07, ease: 'power1.out' }, 0); 
+                sectionMasterTl.to({}, { duration: holdTime }, fadeInTime);
+                sectionMasterTl.to(contentElements, { opacity: 0, y: -25, duration: fadeOutTime, stagger: 0.04, ease: 'power1.in' }, fadeInTime + holdTime); 
             }); 
             function createStationaryHeart() { /* ... Same from V22.5 ... */ }
-            function updateParticlesForSection(sectionId, isActive) {  /* ... Same from V22.5 ... */ }
-            // Re-add the ScrollTriggers for particle updates for longing and slideshow
-            if (document.getElementById('longing')) { 
-                 ScrollTrigger.create({ 
-                     trigger: "#longing", start: "top center", end: "bottom center", 
-                    //  markers: {startColor: "purple", endColor:"magenta"}, // Debugging
-                     onEnter: () => updateParticlesForSection('longing', true),
-                     onLeave: () => updateParticlesForSection('longing', false),
-                     onEnterBack: () => updateParticlesForSection('longing', true),
-                     onLeaveBack: () => updateParticlesForSection('longing', false)
-                 }); 
-             }
-             if (document.getElementById('slideshow')) { 
-                 ScrollTrigger.create({ 
-                     trigger: "#slideshow", start: "top center", end: "bottom center", 
-                    //  markers: {startColor: "teal", endColor:"cyan"}, // Debugging
-                     onEnter: () => updateParticlesForSection('slideshow', true),
-                     onLeave: () => updateParticlesForSection('slideshow', false),
-                     onEnterBack: () => updateParticlesForSection('slideshow', true),
-                     onLeaveBack: () => updateParticlesForSection('slideshow', false)
-                 }); 
-             }
 
+            // Fade out images as user scrolls past each image section
+            document.querySelectorAll('.letter-section img').forEach(img => {
+                gsap.fromTo(img,
+                    { opacity: 1 },
+                    {
+                        opacity: 0,
+                        scrollTrigger: {
+                            trigger: img,
+                            start: "top center",
+                            end: "bottom top",
+                            scrub: true
+                        }
+                    }
+                );
+            });
+
+            // XOXO Heart Burst Animation (Bigger, fills the section)
+            function burstHearts() {
+                const burstContainer = document.getElementById('xoxo-hearts-burst');
+                if (!burstContainer) return;
+                burstContainer.innerHTML = '';
+                const heartColors = [
+                    "#FF5252", "#E91E63", "#F06292", "#FF8A80", "#FFCDD2", "#FF4081", "#F8BBD0", "#FFC107", "#FFF59D"
+                ];
+                const numHearts = 42;
+                const rect = burstContainer.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                for (let i = 0; i < numHearts; i++) {
+                    const heart = document.createElement('span');
+                    heart.textContent = "❤";
+                    heart.style.position = "absolute";
+                    heart.style.left = centerX + "px";
+                    heart.style.top = centerY + "px";
+                    heart.style.fontSize = `${Math.random() * 3 + 3.5}rem`;
+                    heart.style.color = heartColors[Math.floor(Math.random() * heartColors.length)];
+                    heart.style.opacity = 0.92;
+                    heart.style.pointerEvents = "none";
+                    heart.style.filter = "drop-shadow(0 0 16px #FF4081) drop-shadow(0 0 8px #fff)";
+                    burstContainer.appendChild(heart);
+
+                    // Animate with GSAP
+                    const angle = (i / numHearts) * Math.PI * 2 + (Math.random() - 0.5) * 0.5;
+                    const maxDist = Math.min(rect.width, rect.height) * 0.52 + Math.random() * 120;
+                    const distance = maxDist * (0.7 + Math.random() * 0.7);
+                    const rot = (Math.random() - 0.5) * 360;
+                    const scaleEnd = Math.random() * 0.8 + 0.8;
+                    const delay = 0.05 + Math.random() * 0.22;
+
+                    // Pop effect at start
+                    gsap.fromTo(heart, 
+                        { scale: 0.2, opacity: 0.7, rotate: 0 },
+                        { scale: 1.2, opacity: 1, duration: 0.18, ease: "back.out(3)", delay }
+                    );
+
+                    // Burst out with rotation and wobble
+                    gsap.to(heart, {
+                        x: Math.cos(angle) * distance,
+                        y: Math.sin(angle) * distance,
+                        scale: scaleEnd,
+                        rotate: rot,
+                        opacity: 0,
+                        duration: 2.2 + Math.random() * 0.7,
+                        ease: "expo.out",
+                        delay,
+                        onUpdate: function() {
+                            // Wobble effect
+                            heart.style.transform += ` skew(${Math.sin(Date.now()/80 + i)*6}deg, 0deg)`;
+                        },
+                        onComplete: () => heart.remove()
+                    });
+                }
+            }
+
+            // Trigger burst when XOXO section enters view
+            ScrollTrigger.create({
+                trigger: "#xoxo",
+                start: "top center",
+                once: true,
+                onEnter: burstHearts
+            });
         }); 
     </script>
 
