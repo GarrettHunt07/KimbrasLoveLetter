@@ -26,6 +26,8 @@
         }
 
         body { /* ... Same as VS 3.5 ... */ margin: 0; font-family: 'Palatino Linotype', serif; color: var(--text-color); background-color: var(--page-background); overflow-x: hidden; cursor: var(--cursor-style); }
+        body { opacity: 0; transition: opacity 1.2s; }
+        body.loaded { opacity: 1; }
         .letter-section { /* ... Same as VS 3.5 ... */ height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 60px 40px; box-sizing: border-box; position: relative; text-align: center; }
         .content-wrapper { /* ... Same as VS 3.5 ... */ max-width: 700px; width: 90%; z-index: 2; position: relative; }
         h1.salutation, .signature-name, .signature-closing, h2.heading, p.para { /* ... Same as VS 3.5 ... */ opacity: 0; transform: translateY(30px); will-change: opacity, transform; }
@@ -82,14 +84,115 @@
             80% { transform: translate(-50%, -50%) scale(0.97); }
             100% { transform: translate(-50%, -50%) scale(1); }
         }
+
+        .memory-image-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .memory-image-fade {
+            max-width: 100%;
+            max-height: 80vh;   /* Ensures all images fit nicely in the viewport */
+            border-radius: 8px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+            display: block;
+            width: auto;        /* Prevents stretching */
+            height: auto;
+            object-fit: contain; /* Prevents cropping */
+        }
+        .memory-black-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #101010;
+            border-radius: 8px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+
+        /* Specific style for memory-2 to control image size */
+        #memory-2 .memory-image-fade {
+            max-height: 80vh;   /* Ensures it fits nicely in the viewport */
+            width: auto;        /* Prevents stretching */
+            object-fit: contain;
+        }
+
+        .spacer-section {
+            height: 60vh; /* Adjust for more/less blank space */
+            background: #101010;
+        }
+
+        .memory-image-fade:hover {
+            box-shadow: 0 0 60px 10px #ff8a80, 0 4px 24px rgba(0,0,0,0.25);
+            transition: box-shadow 0.4s;
+        }
+
+        /* Floating Hearts */
+        #floating-hearts-container {
+            pointer-events: none;
+            position: fixed;
+            left: 0; top: 0; width: 100vw; height: 100vh;
+            z-index: 100;
+        }
+        .floating-heart {
+            position: absolute;
+            font-size: 2.2rem;
+            color: #FF8A80;
+            opacity: 0.7;
+            animation: floatHeart 8s linear infinite;
+            will-change: transform, opacity;
+            filter: drop-shadow(0 0 8px #FF4081);
+            user-select: none;
+        }
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) scale(0.7) rotate(-10deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% {
+                transform: translateY(-10vh) scale(1.1) rotate(18deg);
+                opacity: 0;
+            }
+        }
+
+        /* Falling Petals */
+        .falling-petal {
+            position: absolute;
+            top: -4vh;
+            pointer-events: none;
+            user-select: none;
+            z-index: 101;
+            filter: drop-shadow(0 0 8px #ffb6c1);
+            will-change: transform, opacity;
+            transition: opacity 0.4s;
+        }
+
+        /* Add to your style */
+        .section-glow {
+            pointer-events: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 2;
+            background: radial-gradient(ellipse at center, rgba(255,82,130,0.09) 0%, rgba(16,16,16,0.85) 100%);
+            opacity: 0;
+            transition: opacity 0.7s;
+        }
+        body.section-glow-active .section-glow {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
+    <div class="section-glow"></div>
+    <div id="floating-hearts-container"></div>
     <div id="particle-container"></div>
     <div class="scroll-progress-bar-container"><div class="scroll-progress-bar"></div></div>
 
-    <audio id="background-audio" loop> <!-- NO autoplay attribute here -->
-        <source src="https://huntfamily.cloud/s/qdcM6FY9qbaG4TH" type="audio/mpeg">
+    <audio id="background-audio" loop>
+        <source src="audio/18th Floor Balcony.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     <button id="play-music-button"><span class="play-icon"></span></button>
@@ -138,84 +241,148 @@
     <!-- IMAGE SECTIONS: Each image is now its own section below the closing -->
     <section id="memory-1" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 1" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/3ucudOn.jpg" alt="Our Memory 1" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
     <section id="memory-2" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 2" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/aEglId5.jpg" alt="Our Memory 2" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
     <section id="memory-3" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 3" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/9agWkUp.jpg" alt="Our Memory 3" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
     <section id="memory-4" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 4" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/AQ0GSJW.jpg" alt="Our Memory 4" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
     <section id="memory-5" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 5" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/aV7iM9Y.jpg" alt="Our Memory 5" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
     <section id="memory-6" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 6" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/bpTxrWn.jpg" alt="Our Memory 6" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
     <section id="memory-7" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 7" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/djCeRMW.jpg" alt="Our Memory 7" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
     <section id="memory-8" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 8" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/Ga0MgaJ.jpg" alt="Our Memory 8" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
     <section id="memory-9" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 9" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/mg6uBso.jpg" alt="Our Memory 9" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
     <section id="memory-10" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 10" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/NCiwm2f.jpg" alt="Our Memory 10" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
     <section id="memory-11" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 11" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/O245MDo.jpg" alt="Our Memory 11" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
     <section id="memory-12" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 12" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/oxWgaoe.jpg" alt="Our Memory 12" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
     <section id="memory-13" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 13" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/QFPqEXa.jpg" alt="Our Memory 13" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
     <section id="memory-14" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 14" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/TRMTDpC.jpg" alt="Our Memory 14" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
     <section id="memory-15" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 15" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/v3t3sEs.jpg" alt="Our Memory 15" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
     <section id="memory-16" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 16" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <div class="memory-image-wrapper">
+                <img src="images/w8vFxaT.jpg" alt="Our Memory 16" class="memory-image-fade">
+                <div class="memory-black-overlay"></div>
+            </div>
         </div>
     </section>
+    <section class="spacer-section"></section>
 
     <!-- Libraries via CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -223,259 +390,261 @@
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            gsap.registerPlugin(ScrollTrigger);
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('loaded');
 
-            // --- Audio Control (Refined for Autoplay on Scroll - from V22.9/VS3.6) ---
-            const audio = document.getElementById("background-audio");
-            const playMusicButton = document.getElementById('play-music-button');
-            let hasPlayedAudioOnce = false; 
-            const playIconHTML = '<span class="play-icon"></span>'; 
-            const pauseIconHTML = '<span class="pause-icon"></span>';
+    // --- Audio Control ---
+    const audio = document.getElementById("background-audio");
+    const playMusicButton = document.getElementById('play-music-button');
+    let hasPlayedAudioOnce = false; 
+    const playIconHTML = '<span class="play-icon"></span>'; 
+    const pauseIconHTML = '<span class="pause-icon"></span>';
 
-            function updateButtonIconState() {
-                if (playMusicButton && audio) {
-                    playMusicButton.innerHTML = audio.paused ? playIconHTML : pauseIconHTML;
-                }
-            }
+    function updateButtonIconState() {
+        if (playMusicButton && audio) {
+            playMusicButton.innerHTML = audio.paused ? playIconHTML : pauseIconHTML;
+        }
+    }
 
-            function attemptToPlayAudio() {
-                if (audio && audio.paused && !hasPlayedAudioOnce) {
-                    audio.play().then(() => {
-                        hasPlayedAudioOnce = true; 
-                        updateButtonIconState();
-                        console.log("Audio playback initiated by user gesture (VS 3.10).");
-                        window.removeEventListener("scroll", gestureTryPlayAudio);
-                        window.removeEventListener("click", gestureTryPlayAudio);
-                        window.removeEventListener("touchstart", gestureTryPlayAudio);
-                    }).catch((err) => {
-                        console.warn("User gesture based autoplay attempt failed:", err);
-                        updateButtonIconState(); 
-                    });
-                } else if (audio && !audio.paused) {
-                     updateButtonIconState();
-                }
-            }
-            function gestureTryPlayAudio() { attemptToPlayAudio(); }
-            window.addEventListener("scroll", gestureTryPlayAudio, { once: true, passive: true });
-            window.addEventListener("click", gestureTryPlayAudio, { once: true, passive: true });
-            window.addEventListener("touchstart", gestureTryPlayAudio, { once: true, passive: true });
-            
-            if (playMusicButton && audio) {
+    function attemptToPlayAudio() {
+        if (audio && audio.paused && !hasPlayedAudioOnce) {
+            audio.play().then(() => {
+                hasPlayedAudioOnce = true; 
+                updateButtonIconState();
+                window.removeEventListener("scroll", gestureTryPlayAudio);
+                window.removeEventListener("click", gestureTryPlayAudio);
+                window.removeEventListener("touchstart", gestureTryPlayAudio);
+            }).catch((err) => {
                 updateButtonIconState(); 
-                playMusicButton.addEventListener('click', (event) => {
-                    event.stopPropagation(); 
-                    hasPlayedAudioOnce = false; // Allow button to always attempt play if paused
-                    if (audio.paused) {
-                        attemptToPlayAudio(); 
-                    } else {
-                        audio.pause();
-                    }
-                });
-                audio.onplaying = updateButtonIconState;
-                audio.onpause = updateButtonIconState;
-                audio.onended = updateButtonIconState;
-            }
-
-            // --- ENHANCED Particle Effects (From V22.5) ---
-            let particlesContainer; 
-            const baseParticleConfig = { fpsLimit: 60, particles: { number: { value: 50, density: { enable: true, value_area: 750 } }, shape: { type: "char", character: [ { value: ["❤", "💖", "💕"], font: "Verdana", style: "", weight: "bold", fill: true }, { value: ["✨", "✦", "✧"], font: "Arial", style: "", weight: "normal", fill: true } ] }, color: { value: ["#FF5252", "#E91E63", "#F06292", "#FF8A80", "#FFCDD2", "#FF4081", "#F8BBD0", "#FFC107", "#FFF59D"] }, opacity: { value: { min: 0.5, max: 1 }, animation: { enable: true, speed: 1.5, minimumValue: 0.3, sync: false, destroy: "none", startValue: "random" } }, size: { value: { min: 10, max: 35 }, animation: { enable: true, speed: 6, minimumValue: 8, sync: false, destroy: "none", startValue: "random"} }, move: { enable: true, speed: {min: 0.8, max: 2.2}, direction: "top", random: true, straight: false, outModes: { default: "out", top:"destroy" }, bounce: false, attract: { enable: true, rotateX: 600, rotateY: 1200, distance: 150 }, trail: { enable: true, fillColor: "var(--page-background)", length: 10, opacity: 0.05 } }, rotate: { value: {min: -60, max: 60}, direction: "random", animation: { enable: true, speed: 20, sync: false } }, wobble: { enable: true, distance: 18, speed: 18 } }, interactivity: { detect_on: "window", events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } }, modes: { repulse: { distance: 120, duration: 0.4, speed: 1.2, factor: 1.5 }, push: { quantity: 6 } } }, detectRetina: true, background: { color: 'transparent' } };
-            tsParticles.load("particle-container", baseParticleConfig).then(container => { particlesContainer = container; console.log("Base Particles Loaded VS 3.10"); });
-
-
-            // --- GSAP Pinning & Animations (Core logic from VS 3.5 / V22.8) ---
-            const progressBarContainer = document.querySelector(".scroll-progress-bar-container");
-            const progressBar = document.querySelector(".scroll-progress-bar");
-            const sections = document.querySelectorAll(".letter-section"); 
-            const bodyEl = document.body;
-
-            sections.forEach((section, index) => {
-                const contentElements = gsap.utils.toArray(section.querySelectorAll("h1.salutation, h2.heading, p.para, .signature-closing, .signature-name"));
-                let pinDuration = "+=400%"; 
-                if (section.id === 'closing') { pinDuration = "+=180%"; } 
-
-                const sectionMasterTl = gsap.timeline({
-                    scrollTrigger: { 
-                        trigger: section, start: "top top", end: pinDuration, pin: true,
-                        pinSpacing: true, scrub: 1.2, invalidateOnRefresh: true,
-                        onUpdate: self => { /* ... onUpdate for section fade & progress bar & stationary hearts ... */ },
-                        onEnter: () => { /* ... onEnter for progress ... */ }, 
-                        onLeave: () => { /* ... onLeave for progress ... */ },
-                        onEnterBack: () => { /* ... onEnterBack for progress ... */ }, 
-                        onLeaveBack: () => { /* ... onLeaveBack for progress ... */ }
-                    }
-                });
-                const fadeInTime = 0.20; const holdTime = 0.60; const fadeOutTime = 0.20; 
-                sectionMasterTl.to(contentElements, { opacity: 1, y: 0, duration: fadeInTime, stagger: 0.07, ease: 'power1.out' }, 0); 
-                sectionMasterTl.to({}, { duration: holdTime }, fadeInTime);
-                sectionMasterTl.to(contentElements, { opacity: 0, y: -25, duration: fadeOutTime, stagger: 0.04, ease: 'power1.in' }, fadeInTime + holdTime); 
-            }); 
-            function createStationaryHeart() { /* ... Same from V22.5 ... */ }
-
-            // Fade out images as user scrolls past each image section (fade slower)
-            document.querySelectorAll('.letter-section img').forEach(img => {
-                gsap.fromTo(img,
-                    { opacity: 1 },
-                    {
-                        opacity: 0,
-                        scrollTrigger: {
-                            trigger: img,
-<<<<<<< HEAD
-                            start: "top 80%",    // Start fading when image top is near bottom of viewport
-                            end: "bottom top+=100", // End fading well after image has left viewport
-=======
-                            start: "top 80%",           // Start fading when image top is near bottom of viewport
-                            end: "bottom top+=300",     // Fade out much slower (increase this number for even slower fade)
->>>>>>> fd26daf (Update music and images)
-                            scrub: true
-                        }
-                    }
-                );
             });
-
-            // XOXO Heart Burst Animation (Bigger, fills the section)
-            function burstHearts() {
-                const burstContainer = document.getElementById('xoxo-hearts-burst');
-                if (!burstContainer) return;
-                burstContainer.innerHTML = '';
-                const heartColors = [
-                    "#FF5252", "#E91E63", "#F06292", "#FF8A80", "#FFCDD2", "#FF4081", "#F8BBD0", "#FFC107", "#FFF59D"
-                ];
-                const numHearts = 42;
-                const rect = burstContainer.getBoundingClientRect();
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                for (let i = 0; i < numHearts; i++) {
-                    const heart = document.createElement('span');
-                    heart.textContent = "❤";
-                    heart.style.position = "absolute";
-                    heart.style.left = centerX + "px";
-                    heart.style.top = centerY + "px";
-                    heart.style.fontSize = `${Math.random() * 3 + 3.5}rem`;
-                    heart.style.color = heartColors[Math.floor(Math.random() * heartColors.length)];
-                    heart.style.opacity = 0.92;
-                    heart.style.pointerEvents = "none";
-                    heart.style.filter = "drop-shadow(0 0 16px #FF4081) drop-shadow(0 0 8px #fff)";
-                    burstContainer.appendChild(heart);
-
-                    // Animate with GSAP
-                    const angle = (i / numHearts) * Math.PI * 2 + (Math.random() - 0.5) * 0.5;
-                    const maxDist = Math.min(rect.width, rect.height) * 0.52 + Math.random() * 120;
-                    const distance = maxDist * (0.7 + Math.random() * 0.7);
-                    const rot = (Math.random() - 0.5) * 360;
-                    const scaleEnd = Math.random() * 0.8 + 0.8;
-                    const delay = 0.05 + Math.random() * 0.22;
-
-                    // Pop effect at start
-                    gsap.fromTo(heart, 
-                        { scale: 0.2, opacity: 0.7, rotate: 0 },
-                        { scale: 1.2, opacity: 1, duration: 0.18, ease: "back.out(3)", delay }
-                    );
-
-                    // Burst out with rotation and wobble
-                    gsap.to(heart, {
-                        x: Math.cos(angle) * distance,
-                        y: Math.sin(angle) * distance,
-                        scale: scaleEnd,
-                        rotate: rot,
-                        opacity: 0,
-                        duration: 2.2 + Math.random() * 0.7,
-                        ease: "expo.out",
-                        delay,
-                        onUpdate: function() {
-                            // Wobble effect
-                            heart.style.transform += ` skew(${Math.sin(Date.now()/80 + i)*6}deg, 0deg)`;
-                        },
-                        onComplete: () => heart.remove()
-                    });
-                }
-            }
-
-            // Trigger burst when XOXO section enters view
-            ScrollTrigger.create({
-                trigger: "#xoxo",
-                start: "top center",
-                once: true,
-                onEnter: burstHearts
-            });
-
-            // Custom beating heart cursor
-            const heartCursor = document.createElement('span');
-            heartCursor.className = 'heart-cursor';
-            heartCursor.textContent = '❤';
-            document.body.appendChild(heartCursor);
-
-            document.body.style.cursor = 'none';
-
-            document.addEventListener('mousemove', e => {
-                heartCursor.style.left = e.clientX + 'px';
-                heartCursor.style.top = e.clientY + 'px';
-                heartCursor.style.opacity = '1';
-            });
-
-            document.addEventListener('mouseleave', () => {
-                heartCursor.style.opacity = '0';
-            });
-        }); 
-    </script>
-
-    <!-- Floating Hearts -->
-    <div id="floating-hearts-container"></div>
-    <style>
-        #floating-hearts-container {
-            pointer-events: none;
-            position: fixed;
-            left: 0; top: 0; width: 100vw; height: 100vh;
-            z-index: 100;
+        } else if (audio && !audio.paused) {
+            updateButtonIconState();
         }
-        .floating-heart {
-            position: absolute;
-            font-size: 2.2rem;
-            color: #FF8A80;
-            opacity: 0.7;
-            animation: floatHeart 8s linear infinite;
-            will-change: transform, opacity;
-            filter: drop-shadow(0 0 8px #FF4081);
-            user-select: none;
-        }
-        @keyframes floatHeart {
-            0% {
-                transform: translateY(100vh) scale(0.7) rotate(-10deg);
-                opacity: 0;
+    }
+    function gestureTryPlayAudio() { attemptToPlayAudio(); }
+    window.addEventListener("scroll", gestureTryPlayAudio, { once: true, passive: true });
+    window.addEventListener("click", gestureTryPlayAudio, { once: true, passive: true });
+    window.addEventListener("touchstart", gestureTryPlayAudio, { once: true, passive: true });
+
+    if (playMusicButton && audio) {
+        updateButtonIconState(); 
+        playMusicButton.addEventListener('click', (event) => {
+            event.stopPropagation(); 
+            hasPlayedAudioOnce = false; // Allow button to always attempt play if paused
+            if (audio.paused) {
+                attemptToPlayAudio(); 
+            } else {
+                audio.pause();
             }
-            10% { opacity: 0.7; }
-            90% { opacity: 0.7; }
-            100% {
-                transform: translateY(-10vh) scale(1.1) rotate(18deg);
-                opacity: 0;
+        });
+        audio.onplaying = updateButtonIconState;
+        audio.onpause = updateButtonIconState;
+        audio.onended = updateButtonIconState;
+    }
+
+    // --- ENHANCED Particle Effects (From V22.5) ---
+    let particlesContainer; 
+    const baseParticleConfig = { /* ...your config... */ };
+    tsParticles.load("particle-container", baseParticleConfig).then(container => { particlesContainer = container; });
+
+    // --- GSAP Pinning & Animations ---
+    const progressBarContainer = document.querySelector(".scroll-progress-bar-container");
+    const progressBar = document.querySelector(".scroll-progress-bar");
+    const sections = document.querySelectorAll(".letter-section"); 
+    const bodyEl = document.body;
+
+    sections.forEach((section, index) => {
+        const contentElements = gsap.utils.toArray(section.querySelectorAll("h1.salutation, h2.heading, p.para, .signature-closing, .signature-name"));
+        let pinDuration = "+=600%";
+        if (section.id === 'closing') { pinDuration = "+=180%"; } 
+
+        const sectionMasterTl = gsap.timeline({
+            scrollTrigger: { 
+                trigger: section, start: "top top", end: pinDuration, pin: true,
+                pinSpacing: true, scrub: 1.2, invalidateOnRefresh: true,
             }
-        }
-    </style>
-    <script>
-        // Floating/Drifting Hearts
-        function spawnFloatingHeart() {
-            const container = document.getElementById('floating-hearts-container');
-            if (!container) return;
+        });
+        const fadeInTime = 0.20, holdTime = 0.60, fadeOutTime = 0.20; 
+        sectionMasterTl.to(contentElements, { opacity: 1, y: 0, duration: fadeInTime, stagger: 0.07, ease: 'power1.out' }, 0); 
+        sectionMasterTl.to({}, { duration: holdTime }, fadeInTime);
+        sectionMasterTl.to(contentElements, { opacity: 0, y: -25, duration: fadeOutTime, stagger: 0.04, ease: 'power1.in' }, fadeInTime + holdTime);
+
+        // Section Glow
+        ScrollTrigger.create({
+            trigger: section,
+            start: "top center",
+            onEnter: () => document.body.classList.add('section-glow-active'),
+            onLeave: () => document.body.classList.remove('section-glow-active'),
+            onEnterBack: () => document.body.classList.add('section-glow-active'),
+            onLeaveBack: () => document.body.classList.remove('section-glow-active')
+        });
+    });
+
+    // Fade out images as user scrolls past each image section (fade slower)
+    document.querySelectorAll('.letter-section[id^="memory-"]').forEach(section => {
+        const img = section.querySelector('.memory-image-fade');
+        const overlay = section.querySelector('.memory-black-overlay');
+        if (!img || !overlay) return;
+
+        ScrollTrigger.create({
+            trigger: section,
+            start: "top top",
+            end: "+=600%", // match your pin duration
+            pin: false,
+            scrub: true,
+            onUpdate: self => {
+                // Fade starts at 50% progress, ends at 98%
+                let fadeStart = 0.5;
+                let fadeEnd = 0.98;
+                let progress = (self.progress - fadeStart) / (fadeEnd - fadeStart);
+                progress = Math.min(Math.max(progress, 0), 1); // Clamp 0-1
+                img.style.opacity = 1 - progress;
+                overlay.style.opacity = progress;
+            }
+        });
+    });
+
+    // XOXO Heart Burst Animation (Bigger, fills the section)
+    function burstHearts() {
+        const burstContainer = document.getElementById('xoxo-hearts-burst');
+        if (!burstContainer) return;
+        burstContainer.innerHTML = '';
+        const heartColors = [
+            "#FF5252", "#E91E63", "#F06292", "#FF8A80", "#FFCDD2", "#FF4081", "#F8BBD0", "#FFC107", "#FFF59D"
+        ];
+        const numHearts = 42;
+        const rect = burstContainer.getBoundingClientRect();
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        for (let i = 0; i < numHearts; i++) {
             const heart = document.createElement('span');
-            heart.className = 'floating-heart';
-            // Randomly pick a heart or sparkle
-            const options = ["❤", "💖", "💕", "✨", "✦"];
-            heart.textContent = options[Math.floor(Math.random() * options.length)];
-            // Random horizontal position
-            heart.style.left = Math.random() * 96 + "vw";
-            // Random animation duration and delay for variety
-            const duration = 7 + Math.random() * 5;
-            heart.style.animationDuration = duration + "s";
-            heart.style.fontSize = (1.5 + Math.random() * 2.5) + "rem";
-            heart.style.opacity = (0.5 + Math.random() * 0.5).toFixed(2);
-            container.appendChild(heart);
-            // Remove after animation
-            setTimeout(() => heart.remove(), duration * 1000);
-        }
-        // Spawn hearts at intervals
-        setInterval(spawnFloatingHeart, 900);
-        for (let i = 0; i < 8; i++) setTimeout(spawnFloatingHeart, i * 700); // Initial burst
-    </script>
+            heart.textContent = "❤";
+            heart.style.position = "absolute";
+            heart.style.left = centerX + "px";
+            heart.style.top = centerY + "px";
+            heart.style.fontSize = `${Math.random() * 3 + 3.5}rem`;
+            heart.style.color = heartColors[Math.floor(Math.random() * heartColors.length)];
+            heart.style.opacity = 0.92;
+            heart.style.pointerEvents = "none";
+            heart.style.filter = "drop-shadow(0 0 16px #FF4081) drop-shadow(0 0 8px #fff)";
+            burstContainer.appendChild(heart);
 
+            // Animate with GSAP
+            const angle = (i / numHearts) * Math.PI * 2 + (Math.random() - 0.5) * 0.5;
+            const maxDist = Math.min(rect.width, rect.height) * 0.52 + Math.random() * 120;
+            const distance = maxDist * (0.7 + Math.random() * 0.7);
+            const rot = (Math.random() - 0.5) * 360;
+            const scaleEnd = Math.random() * 0.8 + 0.8;
+            const delay = 0.05 + Math.random() * 0.22;
+
+            gsap.fromTo(heart, 
+                { scale: 0.2, opacity: 0.7, rotate: 0 },
+                { scale: 1.2, opacity: 1, duration: 0.18, ease: "back.out(3)", delay }
+            );
+            gsap.to(heart, {
+                x: Math.cos(angle) * distance,
+                y: Math.sin(angle) * distance,
+                scale: scaleEnd,
+                rotate: rot,
+                opacity: 0,
+                duration: 2.2 + Math.random() * 0.7,
+                ease: "expo.out",
+                delay,
+                onUpdate: function() {
+                    heart.style.transform += ` skew(${Math.sin(Date.now()/80 + i)*6}deg, 0deg)`;
+                },
+                onComplete: () => heart.remove()
+            });
+        }
+    }
+    ScrollTrigger.create({
+        trigger: "#xoxo",
+        start: "top center",
+        once: true,
+        onEnter: burstHearts
+    });
+
+    // Custom beating heart cursor
+    const heartCursor = document.createElement('span');
+    heartCursor.className = 'heart-cursor';
+    heartCursor.textContent = '❤';
+    document.body.appendChild(heartCursor);
+
+    document.body.style.cursor = 'none';
+
+    document.addEventListener('mousemove', e => {
+        heartCursor.style.left = e.clientX + 'px';
+        heartCursor.style.top = e.clientY + 'px';
+        heartCursor.style.opacity = '1';
+    });
+
+    document.addEventListener('mouseleave', () => {
+        heartCursor.style.opacity = '0';
+    });
+
+    // Memory image scroll animation
+    document.querySelectorAll('.memory-image-wrapper').forEach(wrapper => {
+        gsap.to(wrapper, {
+            y: 60,
+            ease: "none",
+            scrollTrigger: {
+                trigger: wrapper,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+    });
+
+    // Floating/Drifting Hearts
+    function spawnFloatingHeart() {
+        const container = document.getElementById('floating-hearts-container');
+        if (!container) return;
+        const heart = document.createElement('span');
+        heart.className = 'floating-heart';
+        const options = ["❤", "💖", "💕", "✨", "✦"];
+        heart.textContent = options[Math.floor(Math.random() * options.length)];
+        heart.style.left = Math.random() * 96 + "vw";
+        const duration = 7 + Math.random() * 5;
+        heart.style.animationDuration = duration + "s";
+        heart.style.fontSize = (1.5 + Math.random() * 2.5) + "rem";
+        heart.style.opacity = (0.5 + Math.random() * 0.5).toFixed(2);
+        container.appendChild(heart);
+        setTimeout(() => heart.remove(), duration * 1000);
+    }
+    setInterval(spawnFloatingHeart, 900);
+    for (let i = 0; i < 8; i++) setTimeout(spawnFloatingHeart, i * 700);
+
+    // Falling Petals
+    function spawnFallingPetal() {
+        const container = document.getElementById('floating-hearts-container');
+        if (!container) return;
+        const petal = document.createElement('span');
+        petal.className = 'falling-petal';
+        const petalShapes = ["🌸", "💮", "🌺"];
+        petal.textContent = petalShapes[Math.floor(Math.random() * petalShapes.length)];
+        petal.style.left = Math.random() * 96 + "vw";
+        petal.style.fontSize = (1.8 + Math.random() * 2.2) + "rem";
+        petal.style.opacity = (0.6 + Math.random() * 0.4).toFixed(2);
+        container.appendChild(petal);
+
+        const duration = 7 + Math.random() * 5;
+        petal.animate([
+            { transform: `translateY(0) rotate(0deg)`, opacity: petal.style.opacity },
+            { transform: `translateY(80vh) rotate(${Math.random() > 0.5 ? '-' : ''}${30 + Math.random() * 40}deg)`, opacity: 0.2 }
+        ], {
+            duration: duration * 1000,
+            easing: "ease-in-out"
+        });
+
+        setTimeout(() => petal.remove(), duration * 1000);
+    }
+    setInterval(() => {
+        if (Math.random() < 0.5) spawnFallingPetal();
+    }, 4000);
+    for (let i = 0; i < 2; i++) setTimeout(spawnFallingPetal, i * 1200);
+
+});
+</script>
 </body>
 </html>
