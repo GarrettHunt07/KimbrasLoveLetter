@@ -59,6 +59,29 @@
         @keyframes pulseButton { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
         #play-music-button .play-icon::before { content: "▶"; } 
         #play-music-button .pause-icon::before { content: "❚❚"; font-size: 1.4rem; } 
+
+        .heart-cursor {
+            position: fixed;
+            left: 0; top: 0;
+            width: 38px; height: 38px;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 2.1rem;
+            color: #FF5252;
+            filter: drop-shadow(0 0 8px #FF4081);
+            animation: heartBeat 1.1s infinite;
+            transform: translate(-50%, -50%);
+            user-select: none;
+            transition: opacity 0.2s;
+        }
+        @keyframes heartBeat {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            20% { transform: translate(-50%, -50%) scale(1.18); }
+            40% { transform: translate(-50%, -50%) scale(0.93); }
+            60% { transform: translate(-50%, -50%) scale(1.12); }
+            80% { transform: translate(-50%, -50%) scale(0.97); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -66,7 +89,7 @@
     <div class="scroll-progress-bar-container"><div class="scroll-progress-bar"></div></div>
 
     <audio id="background-audio" loop> <!-- NO autoplay attribute here -->
-        <source src="https://huntfamily.cloud/s/nfMJtbAfQE5LgWF/download" type="audio/mpeg">
+        <source src="https://huntfamily.cloud/s/qdcM6FY9qbaG4TH" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     <button id="play-music-button"><span class="play-icon"></span></button>
@@ -115,82 +138,82 @@
     <!-- IMAGE SECTIONS: Each image is now its own section below the closing -->
     <section id="memory-1" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/3ucudOn.jpg" alt="Our Memory 1" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 1" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
     <section id="memory-2" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/aEglId5.jpg" alt="Our Memory 2" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 2" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
     <section id="memory-3" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/v3t3sEs.jpg" alt="Our Memory 3" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 3" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
     <section id="memory-4" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/bpTxrWn.jpg" alt="Our Memory 4" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 4" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
     <section id="memory-5" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/djCeRMW.jpg" alt="Our Memory 5" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 5" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
     <section id="memory-6" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/TRMTDpC.jpg" alt="Our Memory 6" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 6" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
     <section id="memory-7" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/mg6uBso.jpg" alt="Our Memory 7" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 7" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
     <section id="memory-8" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/9agWkUp.jpg" alt="Our Memory 8" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 8" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
     <section id="memory-9" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/QFPqEXa.jpg" alt="Our Memory 9" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 9" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
     <section id="memory-10" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/O245MDo.jpg" alt="Our Memory 10" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 10" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
     <section id="memory-11" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/Ga0MgaJ.jpg" alt="Our Memory 11" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 11" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
     <section id="memory-12" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/AQ0GSJW.jpg" alt="Our Memory 12" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 12" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
     <section id="memory-13" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/aV7iM9Y.jpg" alt="Our Memory 13" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 13" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
     <section id="memory-14" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/w8vFxaT.jpg" alt="Our Memory 14" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 14" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
     <section id="memory-15" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/NCiwm2f.jpg" alt="Our Memory 15" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 15" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
     <section id="memory-16" class="letter-section">
         <div class="content-wrapper">
-            <img src="https://i.imgur.com/oxWgaoe.jpg" alt="Our Memory 16" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
+            <img src="https://huntfamily.cloud/s/dnkntJ4QkCtxezw" alt="Our Memory 16" style="max-width:100%; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.25);">
         </div>
     </section>
 
@@ -297,8 +320,13 @@
                         opacity: 0,
                         scrollTrigger: {
                             trigger: img,
+<<<<<<< HEAD
                             start: "top 80%",    // Start fading when image top is near bottom of viewport
                             end: "bottom top+=100", // End fading well after image has left viewport
+=======
+                            start: "top 80%",           // Start fading when image top is near bottom of viewport
+                            end: "bottom top+=300",     // Fade out much slower (increase this number for even slower fade)
+>>>>>>> fd26daf (Update music and images)
                             scrub: true
                         }
                     }
@@ -370,7 +398,83 @@
                 once: true,
                 onEnter: burstHearts
             });
+
+            // Custom beating heart cursor
+            const heartCursor = document.createElement('span');
+            heartCursor.className = 'heart-cursor';
+            heartCursor.textContent = '❤';
+            document.body.appendChild(heartCursor);
+
+            document.body.style.cursor = 'none';
+
+            document.addEventListener('mousemove', e => {
+                heartCursor.style.left = e.clientX + 'px';
+                heartCursor.style.top = e.clientY + 'px';
+                heartCursor.style.opacity = '1';
+            });
+
+            document.addEventListener('mouseleave', () => {
+                heartCursor.style.opacity = '0';
+            });
         }); 
+    </script>
+
+    <!-- Floating Hearts -->
+    <div id="floating-hearts-container"></div>
+    <style>
+        #floating-hearts-container {
+            pointer-events: none;
+            position: fixed;
+            left: 0; top: 0; width: 100vw; height: 100vh;
+            z-index: 100;
+        }
+        .floating-heart {
+            position: absolute;
+            font-size: 2.2rem;
+            color: #FF8A80;
+            opacity: 0.7;
+            animation: floatHeart 8s linear infinite;
+            will-change: transform, opacity;
+            filter: drop-shadow(0 0 8px #FF4081);
+            user-select: none;
+        }
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) scale(0.7) rotate(-10deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% {
+                transform: translateY(-10vh) scale(1.1) rotate(18deg);
+                opacity: 0;
+            }
+        }
+    </style>
+    <script>
+        // Floating/Drifting Hearts
+        function spawnFloatingHeart() {
+            const container = document.getElementById('floating-hearts-container');
+            if (!container) return;
+            const heart = document.createElement('span');
+            heart.className = 'floating-heart';
+            // Randomly pick a heart or sparkle
+            const options = ["❤", "💖", "💕", "✨", "✦"];
+            heart.textContent = options[Math.floor(Math.random() * options.length)];
+            // Random horizontal position
+            heart.style.left = Math.random() * 96 + "vw";
+            // Random animation duration and delay for variety
+            const duration = 7 + Math.random() * 5;
+            heart.style.animationDuration = duration + "s";
+            heart.style.fontSize = (1.5 + Math.random() * 2.5) + "rem";
+            heart.style.opacity = (0.5 + Math.random() * 0.5).toFixed(2);
+            container.appendChild(heart);
+            // Remove after animation
+            setTimeout(() => heart.remove(), duration * 1000);
+        }
+        // Spawn hearts at intervals
+        setInterval(spawnFloatingHeart, 900);
+        for (let i = 0; i < 8; i++) setTimeout(spawnFloatingHeart, i * 700); // Initial burst
     </script>
 
 </body>
